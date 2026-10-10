@@ -1,0 +1,128 @@
+[
+  {
+    "technique_id": "T1110",
+    "name": "Brute Force",
+    "tactics": ["Credential Access"],
+    "description": "Adversaries may use brute force techniques to attempt access to accounts when passwords or PINs are unknown.",
+    "applicable_event_evidence": "Multiple authentication failures in a single session, rapid authentication retry sequences, or credential dictionary attempts.",
+    "data_source_requirements": ["Logon Session: Logon Session Creation", "User Account: User Account Authentication"],
+    "mapping_rule_id": "RULE_AUTH_BRUTE_FORCE"
+  },
+  {
+    "technique_id": "T1110.001",
+    "name": "Password Guessing",
+    "tactics": ["Credential Access"],
+    "description": "Adversaries may attempt to guess passwords of accounts to gain access.",
+    "applicable_event_evidence": "Repeated failed login attempts targeting the same username or service over a short duration.",
+    "data_source_requirements": ["Logon Session: Logon Session Creation", "User Account: User Account Authentication"],
+    "mapping_rule_id": "RULE_PASSWORD_GUESSING"
+  },
+  {
+    "technique_id": "T1033",
+    "name": "System Owner/User Discovery",
+    "tactics": ["Discovery"],
+    "description": "Adversaries may attempt to identify the primary user, currently logged-in user, prior logged-in users, or set of users that commonly use a system.",
+    "applicable_event_evidence": "Execution of commands querying user identity or logged in sessions: whoami, id, w, who, users, last, logname, cat /etc/passwd.",
+    "data_source_requirements": ["Process: Process Creation", "Command: Command Execution"],
+    "mapping_rule_id": "RULE_USER_DISCOVERY"
+  },
+  {
+    "technique_id": "T1082",
+    "name": "System Information Discovery",
+    "tactics": ["Discovery"],
+    "description": "Adversaries may attempt to get detailed information about the operating system and hardware, including version, patches, system architecture, etc.",
+    "applicable_event_evidence": "Execution of commands enumerating OS version, architecture, or hardware: uname, /etc/os-release, lscpu, /proc/cpuinfo, systeminfo.",
+    "data_source_requirements": ["Process: Process Creation", "Command: Command Execution"],
+    "mapping_rule_id": "RULE_SYSINFO_DISCOVERY"
+  },
+  {
+    "technique_id": "T1059.004",
+    "name": "Command and Scripting Interpreter: Unix Shell",
+    "tactics": ["Execution"],
+    "description": "Adversaries may abuse Unix shells to execute arbitrary commands and scripts.",
+    "applicable_event_evidence": "Shell executions or interactive sessions invoking /bin/sh, /bin/bash, dash, or piped shell commands.",
+    "data_source_requirements": ["Process: Process Creation", "Command: Command Execution"],
+    "mapping_rule_id": "RULE_UNIX_SHELL"
+  },
+  {
+    "technique_id": "T1059.001",
+    "name": "Command and Scripting Interpreter: PowerShell",
+    "tactics": ["Execution"],
+    "description": "Adversaries may abuse PowerShell commands and scripts for execution.",
+    "applicable_event_evidence": "PowerShell executions, encoded command lines (-enc), or cmdlets such as Invoke-Expression and Invoke-WebRequest.",
+    "data_source_requirements": ["Process: Process Creation", "Command: Command Execution", "Script: Script Execution"],
+    "mapping_rule_id": "RULE_POWERSHELL"
+  },
+  {
+    "technique_id": "T1046",
+    "name": "Network Service Discovery",
+    "tactics": ["Discovery"],
+    "description": "Adversaries may attempt to get a listing of services and open ports that are available on hosts across a network.",
+    "applicable_event_evidence": "Port scanning, SYN packet sweeps, or multi-port probes against network decoy ports.",
+    "data_source_requirements": ["Network Traffic: Network Connection Creation", "Network Traffic: Network Traffic Flow"],
+    "mapping_rule_id": "RULE_NETWORK_SCAN"
+  },
+  {
+    "technique_id": "T1105",
+    "name": "Ingress Tool Transfer",
+    "tactics": ["Command and Control"],
+    "description": "Adversaries may transfer tools or other files from an external system into a compromised environment.",
+    "applicable_event_evidence": "Payloads downloading external binaries or scripts via curl, wget, ftp, tftp, certutil, bitsadmin.",
+    "data_source_requirements": ["Process: Process Creation", "File: File Creation", "Network Traffic: Network Traffic Flow"],
+    "mapping_rule_id": "RULE_INGRESS_TRANSFER"
+  },
+  {
+    "technique_id": "T1053.003",
+    "name": "Scheduled Task/Job: Cron",
+    "tactics": ["Persistence", "Privilege Escalation"],
+    "description": "Adversaries may abuse the cron utility to execute malicious code on a scheduled or recurring basis.",
+    "applicable_event_evidence": "Writing or editing crontabs (/etc/crontab, /etc/cron.*, crontab -e, crontab -l) or systemd timers.",
+    "data_source_requirements": ["File: File Modification", "Process: Process Creation", "Command: Command Execution"],
+    "mapping_rule_id": "RULE_CRON_PERSISTENCE"
+  },
+  {
+    "technique_id": "T1070.004",
+    "name": "Indicator Removal: File Deletion",
+    "tactics": ["Defense Evasion"],
+    "description": "Adversaries may delete files left behind by the actions of their software or clear logs to obscure their presence.",
+    "applicable_event_evidence": "Commands deleting artifacts or clearing traces: rm -rf, shred, history -c, unset HISTFILE, truncate.",
+    "data_source_requirements": ["File: File Deletion", "Command: Command Execution"],
+    "mapping_rule_id": "RULE_INDICATOR_REMOVAL"
+  },
+  {
+    "technique_id": "T1078",
+    "name": "Valid Accounts",
+    "tactics": ["Initial Access", "Persistence", "Privilege Escalation", "Defense Evasion"],
+    "description": "Adversaries may obtain and abuse credentials of existing accounts as a means of gaining Initial Access, Persistence, Privilege Escalation, or Defense Evasion.",
+    "applicable_event_evidence": "Successful login events (login_success, auth_success) establishing authenticated honeynet sessions.",
+    "data_source_requirements": ["Logon Session: Logon Session Creation", "User Account: User Account Authentication"],
+    "mapping_rule_id": "RULE_VALID_ACCOUNTS"
+  },
+  {
+    "technique_id": "T1083",
+    "name": "File and Directory Discovery",
+    "tactics": ["Discovery"],
+    "description": "Adversaries may enumerate files and directories or search in specific locations of the host for certain information.",
+    "applicable_event_evidence": "Commands traversing directories or locating files: ls -la, dir /s, find / -name.",
+    "data_source_requirements": ["Process: Process Creation", "Command: Command Execution"],
+    "mapping_rule_id": "RULE_FILE_DIR_DISCOVERY"
+  },
+  {
+    "technique_id": "T1018",
+    "name": "Remote System Discovery",
+    "tactics": ["Discovery"],
+    "description": "Adversaries may attempt to get a listing of other systems on the network.",
+    "applicable_event_evidence": "Commands enumerating neighbors: arp -a, ping -c, net view, ip neigh.",
+    "data_source_requirements": ["Process: Process Creation", "Network Traffic: Network Connection Creation"],
+    "mapping_rule_id": "RULE_REMOTE_SYSTEM_DISCOVERY"
+  },
+  {
+    "technique_id": "T1190",
+    "name": "Exploit Public-Facing Application",
+    "tactics": ["Initial Access"],
+    "description": "Adversaries may attempt to take advantage of a software vulnerability in an Internet-facing computer or system to gain access.",
+    "applicable_event_evidence": "Inbound HTTP payloads exhibiting SQL injection syntax, directory traversal ('../'), Log4j expressions ('${jndi:'), or known CVE exploit signatures.",
+    "data_source_requirements": ["Application Log: Application Log Content", "Network Traffic: Network Traffic Content"],
+    "mapping_rule_id": "RULE_EXPLOIT_PAYLOAD"
+  }
+]
