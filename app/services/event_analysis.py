@@ -22,8 +22,8 @@ from enum import Enum
 from typing import Optional, List, Dict, Any, Union
 from pydantic import BaseModel, Field, ConfigDict
 
-from backend.app.models.telemetry import TelemetryEventDB, TelemetryEventCreate
-from backend.app.services.mitre_catalog import load_mitre_catalog
+from app.models.telemetry import TelemetryEventDB, TelemetryEventCreate
+from app.services.mitre_catalog import load_mitre_catalog
 
 class BehaviorCategory(str, Enum):
     AUTH_FAILURE = "AUTH_FAILURE"

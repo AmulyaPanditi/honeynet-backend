@@ -1,7 +1,7 @@
 import logging
 from sqlalchemy import create_engine, text, inspect
 from sqlalchemy.orm import declarative_base, sessionmaker
-from backend.app.config import settings
+from app.config import settings
 
 logger = logging.getLogger("honeynet.database")
 
@@ -46,10 +46,10 @@ def get_db():
         db.close()
 
 def init_db():
-    import backend.app.models.telemetry
-    import backend.app.models.alert
-    import backend.app.models.session
-    import backend.app.models.mitre
+    import app.models.telemetry
+    import app.models.alert
+    import app.models.session
+    import app.models.mitre
     Base.metadata.create_all(bind=engine)
     
     # Safe schema migration for added columns

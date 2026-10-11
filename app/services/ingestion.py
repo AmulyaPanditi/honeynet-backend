@@ -2,9 +2,9 @@ from datetime import datetime, timezone
 import uuid
 from typing import List, Dict, Any, Tuple
 from sqlalchemy.orm import Session
-from backend.app.models.telemetry import TelemetryEventDB, TelemetryEventCreate
-from backend.app.services.mitre import map_telemetry_to_mitre
-from backend.app.services.alerts import check_and_create_alert
+from app.models.telemetry import TelemetryEventDB, TelemetryEventCreate
+from app.services.mitre import map_telemetry_to_mitre
+from app.services.alerts import check_and_create_alert
 
 def ingest_telemetry_event(data: TelemetryEventCreate, db: Session) -> Tuple[TelemetryEventDB, bool]:
     """
@@ -56,7 +56,7 @@ def ingest_telemetry_event(data: TelemetryEventCreate, db: Session) -> Tuple[Tel
 
     # Persist evidence mapping record if supported
     try:
-        from backend.app.services.mitre import persist_event_technique_mapping
+        from app.services.mitre import persist_event_technique_mapping
         persist_event_technique_mapping(db_event, db)
     except Exception:
         pass
@@ -69,9 +69,9 @@ def ingest_telemetry_event(data: TelemetryEventCreate, db: Session) -> Tuple[Tel
 
     # Real-time incremental session correlation & session-level technique analysis
     try:
-        from backend.app.services.correlation import correlate_single_event
-        from backend.app.models.session import InvestigationSessionDB
-        from backend.app.services.mitre import analyze_session_techniques
+        from app.services.correlation import correlate_single_event
+        from app.models.session import InvestigationSessionDB
+        from app.services.mitre import analyze_session_techniques
         assigned_session_id = correlate_single_event(db_event, db)
         if assigned_session_id:
             sess_obj = db.query(InvestigationSessionDB).filter(

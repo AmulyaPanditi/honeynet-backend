@@ -3,8 +3,8 @@ from sqlalchemy.orm import Session
 from typing import Optional, Dict, Any
 from datetime import datetime
 
-from backend.app.database import get_db
-from backend.app.services.graph import build_investigation_graph, generate_causal_graph
+from app.database import get_db
+from app.services.graph import build_investigation_graph, generate_causal_graph
 
 router = APIRouter(tags=["Investigation Graph"])
 

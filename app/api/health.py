@@ -2,8 +2,8 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from sqlalchemy import text
 from datetime import datetime, timezone
-from backend.app.database import get_db, is_sqlite
-from backend.app.config import settings
+from app.database import get_db, is_sqlite
+from app.config import settings
 
 router = APIRouter(tags=["Health"])
 

@@ -3,11 +3,11 @@ from datetime import datetime, timezone
 from sqlalchemy.orm import Session
 from sqlalchemy import or_
 
-from backend.app.models.telemetry import TelemetryEventDB
-from backend.app.models.session import InvestigationSessionDB
-from backend.app.models.mitre import TechniqueMappingDB
-from backend.app.models.alert import AlertDB
-from backend.app.services.mitre_catalog import get_technique_from_catalog
+from app.models.telemetry import TelemetryEventDB
+from app.models.session import InvestigationSessionDB
+from app.models.mitre import TechniqueMappingDB
+from app.models.alert import AlertDB
+from app.services.mitre_catalog import get_technique_from_catalog
 
 def build_investigation_graph(
     db: Session,

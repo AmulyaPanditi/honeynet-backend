@@ -1,11 +1,11 @@
 from typing import Dict, Any, List
 from sqlalchemy.orm import Session
 from sqlalchemy import func
-from backend.app.models.telemetry import TelemetryEventDB
-from backend.app.models.alert import AlertDB
-from backend.app.models.session import InvestigationSessionDB
-from backend.app.services.mitre import MITRE_TECHNIQUES
-from backend.app.database import is_sqlite
+from app.models.telemetry import TelemetryEventDB
+from app.models.alert import AlertDB
+from app.models.session import InvestigationSessionDB
+from app.services.mitre import MITRE_TECHNIQUES
+from app.database import is_sqlite
 
 def get_telemetry_stats(db: Session) -> Dict[str, Any]:
     """

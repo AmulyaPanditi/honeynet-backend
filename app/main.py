@@ -1,7 +1,10 @@
 import sys
 from pathlib import Path
 
-# Ensure project root is in sys.path so 'backend.app' is always resolvable
+# Ensure backend directory is in sys.path so 'app' is always resolvable
+_backend_root = str(Path(__file__).resolve().parent.parent)
+if _backend_root not in sys.path:
+    sys.path.insert(0, _backend_root)
 _project_root = str(Path(__file__).resolve().parent.parent.parent)
 if _project_root not in sys.path:
     sys.path.insert(0, _project_root)
@@ -12,18 +15,18 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from backend.app.config import settings
-from backend.app.database import init_db
+from app.config import settings
+from app.database import init_db
 
-from backend.app.api.health import router as health_router
-from backend.app.api.events import router as events_router
-from backend.app.api.sessions import router as sessions_router
-from backend.app.api.dashboard import router as dashboard_router
-from backend.app.api.telemetry import router as telemetry_router
-from backend.app.api.alerts import router as alerts_router
-from backend.app.api.mitre import router as mitre_router
-from backend.app.api.graph import router as graph_router
-from backend.app.api.profiles import router as profiles_router
+from app.api.health import router as health_router
+from app.api.events import router as events_router
+from app.api.sessions import router as sessions_router
+from app.api.dashboard import router as dashboard_router
+from app.api.telemetry import router as telemetry_router
+from app.api.alerts import router as alerts_router
+from app.api.mitre import router as mitre_router
+from app.api.graph import router as graph_router
+from app.api.profiles import router as profiles_router
 
 # Configure logging
 logging.basicConfig(
@@ -104,4 +107,4 @@ def root():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("backend.app.main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)

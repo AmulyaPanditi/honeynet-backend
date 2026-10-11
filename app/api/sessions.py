@@ -3,15 +3,15 @@ from sqlalchemy.orm import Session
 from typing import List, Optional, Dict, Any
 from datetime import datetime
 
-from backend.app.database import get_db
-from backend.app.models.session import (
+from app.database import get_db
+from app.models.session import (
     InvestigationSessionDB,
     SessionResponse,
     SessionTimelineResponse,
     SessionTimelineItem
 )
-from backend.app.models.telemetry import TelemetryEventDB, TelemetryEventResponse
-from backend.app.services.correlation import correlate_events
+from app.models.telemetry import TelemetryEventDB, TelemetryEventResponse
+from app.services.correlation import correlate_events
 
 router = APIRouter(tags=["Attack Sessions"])
 
@@ -190,7 +190,7 @@ def run_correlation(
             detail=f"Correlation engine error: {str(e)}"
         )
 
-from backend.app.services.correlation import analyze_session_attack_sequence
+from app.services.correlation import analyze_session_attack_sequence
 
 @router.get("/sessions/{session_id}/attack-sequence", response_model=Dict[str, Any])
 def get_session_attack_sequence(session_id: str, db: Session = Depends(get_db)):

@@ -2,9 +2,9 @@ from datetime import datetime, timezone
 import uuid
 from typing import Optional, List, Dict, Any
 from sqlalchemy import Column, Integer, String, DateTime, Text, JSON
-from backend.app.database import Base
+from app.database import Base
 from pydantic import BaseModel, Field
-from backend.app.services.mitre_catalog import TechniqueCatalogItem
+from app.services.mitre_catalog import TechniqueCatalogItem
 
 # SQLAlchemy Table for Stored Evidence-Based MITRE ATT&CK Mappings
 class TechniqueMappingDB(Base):

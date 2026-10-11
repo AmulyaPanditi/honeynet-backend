@@ -4,8 +4,8 @@ from typing import List, Dict, Any, Optional, Tuple
 from sqlalchemy.orm import Session
 from sqlalchemy import func
 
-from backend.app.models.telemetry import TelemetryEventDB
-from backend.app.models.session import InvestigationSessionDB, FlaggedSequenceLead
+from app.models.telemetry import TelemetryEventDB
+from app.models.session import InvestigationSessionDB, FlaggedSequenceLead
 
 logger = logging.getLogger("honeynet.correlation")
 
@@ -362,7 +362,7 @@ def correlate_events(db: Session, window_minutes: int = CORRELATION_WINDOW_MINUT
 
     # Recompute and persist session-level MITRE technique mappings
     try:
-        from backend.app.services.mitre import analyze_session_techniques
+        from app.services.mitre import analyze_session_techniques
         for s_id in session_groups.keys():
             s_obj = db.query(InvestigationSessionDB).filter(InvestigationSessionDB.session_id == s_id).first()
             if s_obj:
@@ -473,7 +473,7 @@ def correlate_single_event(event: TelemetryEventDB, db: Session, window_minutes:
     db.commit()
 
     try:
-        from backend.app.services.mitre import analyze_session_techniques
+        from app.services.mitre import analyze_session_techniques
         analyze_session_techniques(session_record, db)
     except Exception:
         pass
@@ -521,8 +521,8 @@ def analyze_session_attack_sequence(session_id: str, db: Session) -> Optional[Di
     last_time = events[-1].timestamp or first_time
     duration = max(0.0, (last_time - first_time).total_seconds())
 
-    from backend.app.services.event_analysis import analyze_telemetry_event
-    from backend.app.services.mitre_verification import verify_technique_mapping
+    from app.services.event_analysis import analyze_telemetry_event
+    from app.services.mitre_verification import verify_technique_mapping
 
     timeline_items = []
     observed_stages_set = set()

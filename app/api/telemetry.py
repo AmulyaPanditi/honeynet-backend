@@ -2,13 +2,13 @@ from fastapi import APIRouter, Depends, Query, HTTPException, status
 from sqlalchemy.orm import Session
 from sqlalchemy import or_
 from typing import List, Optional
-from backend.app.database import get_db
-from backend.app.models.telemetry import (
+from app.database import get_db
+from app.models.telemetry import (
     TelemetryEventCreate,
     TelemetryEventResponse,
     TelemetryEventDB
 )
-from backend.app.services.ingestion import ingest_telemetry_event
+from app.services.ingestion import ingest_telemetry_event
 from backend.seed_demo_telemetry import seed_synthetic_telemetry
 
 router = APIRouter(prefix="/telemetry", tags=["Telemetry"])

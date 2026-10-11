@@ -3,9 +3,9 @@ from sqlalchemy.orm import Session
 from sqlalchemy import func, desc, or_
 from typing import List, Optional, Dict, Any
 
-from backend.app.database import get_db
-from backend.app.models.alert import AlertDB, AlertResponse, AlertUpdate, AlertDetectResponse
-from backend.app.services.alerts import detect_explainable_alerts
+from app.database import get_db
+from app.models.alert import AlertDB, AlertResponse, AlertUpdate, AlertDetectResponse
+from app.services.alerts import detect_explainable_alerts
 
 router = APIRouter(prefix="/alerts", tags=["Alerts"])
 

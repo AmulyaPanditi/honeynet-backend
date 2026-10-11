@@ -2,8 +2,8 @@ from fastapi import APIRouter, Depends, Query, HTTPException, status
 from sqlalchemy.orm import Session
 from sqlalchemy import or_
 from typing import List, Optional, Union
-from backend.app.database import get_db
-from backend.app.models.telemetry import (
+from app.database import get_db
+from app.models.telemetry import (
     TelemetryEventCreate,
     TelemetryEventResponse,
     TelemetryEventDB,
@@ -11,9 +11,9 @@ from backend.app.models.telemetry import (
     BulkTelemetryResponse,
     TelemetryStatsResponse
 )
-from backend.app.services.ingestion import ingest_telemetry_event, ingest_bulk_telemetry
-from backend.app.services.analysis import get_telemetry_stats
-from backend.app.services.event_analysis import (
+from app.services.ingestion import ingest_telemetry_event, ingest_bulk_telemetry
+from app.services.analysis import get_telemetry_stats
+from app.services.event_analysis import (
     EventAnalysisResult,
     analyze_telemetry_event,
     analyze_events_batch
@@ -108,7 +108,7 @@ def get_single_event(event_id: str, db: Session = Depends(get_db)):
 
 import secrets
 from fastapi import Header
-from backend.app.config import settings
+from app.config import settings
 
 def verify_sensor_api_key(x_api_key: Optional[str] = Header(None, alias="X-API-Key")):
     """

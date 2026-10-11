@@ -11,13 +11,13 @@ from datetime import datetime, timezone
 from sqlalchemy.orm import Session
 from sqlalchemy import func
 
-from backend.app.models.telemetry import TelemetryEventDB
-from backend.app.models.session import InvestigationSessionDB
-from backend.app.models.alert import AlertDB
-from backend.app.models.mitre import TechniqueMappingDB
-from backend.app.services.alerts import cluster_threat_actor
-from backend.app.services.event_analysis import analyze_telemetry_event
-from backend.app.services.mitre_verification import verify_technique_mapping
+from app.models.telemetry import TelemetryEventDB
+from app.models.session import InvestigationSessionDB
+from app.models.alert import AlertDB
+from app.models.mitre import TechniqueMappingDB
+from app.services.alerts import cluster_threat_actor
+from app.services.event_analysis import analyze_telemetry_event
+from app.services.mitre_verification import verify_technique_mapping
 
 def build_attacker_profile(source_ip: str, db: Session) -> Optional[Dict[str, Any]]:
     """

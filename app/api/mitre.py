@@ -3,28 +3,28 @@ from sqlalchemy.orm import Session
 from sqlalchemy import func
 from typing import List, Dict, Any, Optional
 
-from backend.app.database import get_db
-from backend.app.models.telemetry import TelemetryEventDB
-from backend.app.models.session import InvestigationSessionDB
-from backend.app.models.mitre import (
+from app.database import get_db
+from app.models.telemetry import TelemetryEventDB
+from app.models.session import InvestigationSessionDB
+from app.models.mitre import (
     TechniqueMappingDB,
     TechniqueMappingResponse,
     TechniqueSummaryItem,
     TechniqueDetailResponse,
     MitreRunResponse
 )
-from backend.app.services.mitre_catalog import (
+from app.services.mitre_catalog import (
     load_mitre_catalog,
     get_technique_from_catalog,
     list_all_catalog_techniques
 )
-from backend.app.services.mitre import (
+from app.services.mitre import (
     run_mitre_analysis,
     evaluate_event_evidence,
     persist_event_technique_mapping,
     analyze_session_techniques
 )
-from backend.app.services.analysis import get_mitre_matrix_status
+from app.services.analysis import get_mitre_matrix_status
 
 router = APIRouter(tags=["MITRE ATT&CK Engine"])
 
@@ -251,7 +251,7 @@ def get_mitre_matrix(db: Session = Depends(get_db)):
     return get_mitre_matrix_status(db)
 
 from pydantic import BaseModel, Field
-from backend.app.services.mitre_verification import (
+from app.services.mitre_verification import (
     TechniqueVerificationResult,
     verify_technique_mapping
 )

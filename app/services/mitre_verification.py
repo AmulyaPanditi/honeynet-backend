@@ -13,7 +13,7 @@ from enum import Enum
 from typing import Optional, List, Dict, Any, Union
 from pydantic import BaseModel, Field, ConfigDict
 
-from backend.app.services.mitre_catalog import (
+from app.services.mitre_catalog import (
     load_mitre_catalog,
     get_technique_from_catalog,
     TechniqueCatalogItem

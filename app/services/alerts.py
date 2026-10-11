@@ -5,10 +5,10 @@ import json
 from sqlalchemy.orm import Session
 from sqlalchemy import or_
 
-from backend.app.models.telemetry import TelemetryEventDB
-from backend.app.models.session import InvestigationSessionDB
-from backend.app.models.alert import AlertDB, AlertDetectResponse
-from backend.app.services.mitre import MITRE_TECHNIQUES
+from app.models.telemetry import TelemetryEventDB
+from app.models.session import InvestigationSessionDB
+from app.models.alert import AlertDB, AlertDetectResponse
+from app.services.mitre import MITRE_TECHNIQUES
 
 # Detection Rule Definitions
 RULE_AUTH_BRUTE_FORCE = "ALERT_RULE_AUTH_BRUTE_FORCE"

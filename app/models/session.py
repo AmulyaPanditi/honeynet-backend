@@ -2,7 +2,7 @@ from datetime import datetime, timezone
 import json
 from typing import Optional, List, Dict, Any
 from sqlalchemy import Column, Integer, String, DateTime, Text, Float, JSON
-from backend.app.database import Base
+from app.database import Base
 from pydantic import BaseModel, Field
 
 # SQLAlchemy Model for Correlated Investigation Sessions

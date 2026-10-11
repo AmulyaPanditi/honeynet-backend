@@ -4,14 +4,14 @@ from sqlalchemy.orm import Session
 from datetime import datetime, timezone
 import uuid
 
-from backend.app.services.mitre_catalog import (
+from app.services.mitre_catalog import (
     load_mitre_catalog,
     get_technique_from_catalog,
     TechniqueCatalogItem
 )
-from backend.app.models.mitre import TechniqueMappingDB
-from backend.app.models.telemetry import TelemetryEventDB
-from backend.app.models.session import InvestigationSessionDB
+from app.models.mitre import TechniqueMappingDB
+from app.models.telemetry import TelemetryEventDB
+from app.models.session import InvestigationSessionDB
 
 # Populate MITRE_TECHNIQUES dict dynamically from catalog for full backward compatibility
 def get_mitre_techniques_dict() -> Dict[str, Dict[str, Any]]:

@@ -2,8 +2,8 @@ from fastapi import APIRouter, Depends, Query, HTTPException, status
 from sqlalchemy.orm import Session
 from typing import List, Dict, Any, Optional
 
-from backend.app.database import get_db
-from backend.app.services.profiling import build_attacker_profile, list_attacker_profiles
+from app.database import get_db
+from app.services.profiling import build_attacker_profile, list_attacker_profiles
 
 router = APIRouter(tags=["Attacker Profiling"])
 
