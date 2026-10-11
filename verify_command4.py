@@ -40,7 +40,7 @@ def verify_all():
     # 2. Verify mapping rules use actual telemetry evidence
     # -------------------------------------------------------------------------
     print("\n[Criterion 2] Checking that mapping rules use actual telemetry evidence...")
-    from backend.app.services.mitre import evaluate_event_evidence
+    from app.services.mitre import evaluate_event_evidence
     
     # Test valid user discovery evidence
     eval_user = evaluate_event_evidence("command_execution", payload="whoami", username="root")

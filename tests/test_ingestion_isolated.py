@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-from backend.app.config import DEFAULT_SQLITE_PATH
+from app.config import DEFAULT_SQLITE_PATH
 
 def test_ingestion_and_duplicate_suppression(client):
     """Verify single and bulk event ingestion with safe duplicate suppression."""

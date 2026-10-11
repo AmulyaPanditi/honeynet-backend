@@ -5,9 +5,9 @@ from sqlalchemy.pool import StaticPool
 from sqlalchemy.orm import sessionmaker
 from fastapi.testclient import TestClient
 
-from backend.app.main import app
-from backend.app.database import Base, get_db
-from backend.app.config import settings
+from app.main import app
+from app.database import Base, get_db
+from app.config import settings
 
 # In-memory SQLite with StaticPool ensures all connections share the same in-memory DB
 TEST_DATABASE_URL = "sqlite:///:memory:"
@@ -23,10 +23,10 @@ def test_engine():
         connect_args={"check_same_thread": False},
         poolclass=StaticPool
     )
-    import backend.app.models.telemetry
-    import backend.app.models.alert
-    import backend.app.models.session
-    import backend.app.models.mitre
+    import app.models.telemetry
+    import app.models.alert
+    import app.models.session
+    import app.models.mitre
     
     Base.metadata.create_all(bind=engine)
     yield engine

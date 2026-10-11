@@ -1,5 +1,5 @@
 import pytest
-from backend.app.config import settings
+from app.config import settings
 
 def test_ingestion_unauthenticated_when_api_key_unset(client, monkeypatch):
     """When API_KEY is unset, sensor ingestion allows open local development."""

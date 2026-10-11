@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-from backend.app.config import resolve_database_url, PROJECT_ROOT, DEFAULT_SQLITE_PATH
+from app.config import resolve_database_url, PROJECT_ROOT, DEFAULT_SQLITE_PATH
 
 def test_health_endpoint(client):
     """Health check endpoint returns HTTP 200 and connected database status."""

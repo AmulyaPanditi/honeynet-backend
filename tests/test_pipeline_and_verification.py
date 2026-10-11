@@ -1,19 +1,19 @@
 import pytest
 from datetime import datetime, timezone, timedelta
-from backend.app.models.telemetry import TelemetryEventDB, TelemetryEventCreate
-from backend.app.models.session import InvestigationSessionDB
-from backend.app.services.mitre_verification import (
+from app.models.telemetry import TelemetryEventDB, TelemetryEventCreate
+from app.models.session import InvestigationSessionDB
+from app.services.mitre_verification import (
     verify_technique_mapping,
     VerificationStatus,
     ObservationType
 )
-from backend.app.services.correlation import (
+from app.services.correlation import (
     correlate_events,
     correlate_single_event,
     analyze_session_attack_sequence
 )
-from backend.app.services.profiling import build_attacker_profile, list_attacker_profiles
-from backend.app.services.graph import build_investigation_graph
+from app.services.profiling import build_attacker_profile, list_attacker_profiles
+from app.services.graph import build_investigation_graph
 
 # 1. MITRE Verification: SUPPORTED cases
 def test_mitre_mapping_verification_supported():

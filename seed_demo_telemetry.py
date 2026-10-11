@@ -14,11 +14,11 @@ import os
 from datetime import datetime, timezone, timedelta
 
 # Ensure parent path is in sys.path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 
-from backend.app.database import SessionLocal, init_db
-from backend.app.models.telemetry import TelemetryEventCreate
-from backend.app.services.ingestion import ingest_telemetry_event
+from app.database import SessionLocal, init_db
+from app.models.telemetry import TelemetryEventCreate
+from app.services.ingestion import ingest_telemetry_event
 
 def seed_synthetic_telemetry():
     print("[*] Initializing database schema...")

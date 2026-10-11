@@ -9,7 +9,7 @@ from app.models.telemetry import (
     TelemetryEventDB
 )
 from app.services.ingestion import ingest_telemetry_event
-from backend.seed_demo_telemetry import seed_synthetic_telemetry
+from seed_demo_telemetry import seed_synthetic_telemetry
 
 router = APIRouter(prefix="/telemetry", tags=["Telemetry"])
 

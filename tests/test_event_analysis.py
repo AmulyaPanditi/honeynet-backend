@@ -1,8 +1,8 @@
 import os
 import pytest
 from datetime import datetime, timezone
-from backend.app.models.telemetry import TelemetryEventDB, TelemetryEventCreate
-from backend.app.services.event_analysis import (
+from app.models.telemetry import TelemetryEventDB, TelemetryEventCreate
+from app.services.event_analysis import (
     BehaviorCategory,
     EventAnalysisResult,
     analyze_telemetry_event,
@@ -17,8 +17,8 @@ from backend.app.services.event_analysis import (
     RULE_BEHAVIOR_INDICATOR_REMOVAL,
     RULE_BEHAVIOR_UNCLASSIFIED
 )
-from backend.app.services.mitre_catalog import load_mitre_catalog
-from backend.app.models.alert import AlertDB
+from app.services.mitre_catalog import load_mitre_catalog
+from app.models.alert import AlertDB
 
 # 1. Authentication failure classification
 def test_auth_failure_classification():
